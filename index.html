@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <form action="#" method="post">
+        <h1 style="font-size: 25px; text-align: center;">Registration form</h1>
+        <p>
+            <label>Name</label> <br>
+            <input type="text" autocomplete="off" placeholder="  Enter your  name" id="Name">
+        </p>
+        <p>
+            <label>Email</label><br>
+            <input type="email" name="Email" autocomplete="off" placeholder="  Enter your Email" id="email">
+        </p>
+        <p><label>Phone Number</label><br>
+            <input type="text" autocomplete="off" placeholder="  Enter your Phone number " id="number">
+        </p>
+        <p>
+            <label>Address</label><br>
+            <input type="text" autocomplete="off" placeholder="  Enter your Address" id="address">
+        </p>
+        <p>
+            <label>Password</label><br>
+            <input type="password" autocomplete="off" placeholder="  Enter your Password" id="password">
+        </p>
+        <div class="error">
+            <span id="caps_error"></span><br>
+            <span id="empty_error"></span>
+        </div>
+
+        <p>
+            <input type="submit" name="submit" id="submit">
+        </p>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
