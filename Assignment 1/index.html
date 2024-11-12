@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="ribbon">
+            <i id="icon" class="fa-solid fa-phone"></i>
+            <div id="phone">+92-304-111-LALS</div>
+        </div>
+
+        <div class="logo">
+            <div class="delivery">
+                <i id="truck" class="fa-solid fa-truck"></i>
+                <div class="pak">
+                    <p>delivery to </p> <img
+                        src="data:image/png;base64,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">
+                </div>
+            </div>
+            <div class="centre">
+                LALS
+            </div>
+            <div class="icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="option-bar">
+            <span>FREE DELIVERY</span>
+            <select>
+                <option>CHOCOLATES</option>
+            </select>
+            <select>
+                <option>GIFTING</option>
+            </select>
+            <select>
+                <option>CAKES</option>
+            </select>
+            <select>
+                <option>PATESSERIE</option>
+            </select>
+            <select>
+                <option>OCCASIONS</option>
+            </select>
+            <span>SHOP ALL</span>
+        </div>
+    </header>
+    <div id="slider">
+        <figure>
+            <img src="5.webp">
+            <img src="2.jpg">
+            <img src="3.webp">
+            <img id="image" src="6.jpg">
+            <img src="5.webp">
+        </figure>
+    </div>
+    <div class="quality">
+        ALL OUR PRODUCTS ARE DELIVERED IN CHILLER VANS SO THE WEATHER DOES NOT IMPACT OUR QUALITY
+    </div>
+    <div class="award">
+        <img id="awardphoto" src="award.webp">
+        <div class="award-text">
+            <h2>Lals Patisserie Wins La Liste's 2024 <br> Pastry Discovery Gem Award</h2>
+            <hr id="text-line">
+            <p>We have exciting news for our Lals family! Lals Patisserie achieved a monumental victory on the global
+                stage! This homegrown brand, with presence in UAE, has been awarded the prestigious “Pastry Discovery
+                Gem Award” at La Liste’s 2024 in Paris. This award is all about celebrating Lal Majid’s passion and
+                dedication to creating delectable chocolates and desserts, standing out amongst the world’s top chefs
+                and culinary experts. We couldn’t have done it without your love and support!</p>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="first-photo">
+            <img src="pic-1.webp">
+            <h4>Curated Gift Hampers</h4>
+            <p>Celebrate loved ones with our curated range of Pastry Baskets and Chocolate Filled Hampers.</p>
+            <button>SHOP NOW</button>
+        </div>
+        <div class="second-photo">
+            <img src="pic-2.webp">
+            <h4>Cakes and Cupcake</h4>
+            <p>Gourmet Cakes and Pastries for every <br> occasion.</p>
+            <button>SHOP NOW</button>
+        </div>
+        <div class="third-photo">
+            <img src="pic-4.jpg">
+            <h4>Fresh made Ice-Cream</h4>
+            <p>Discover our delicious Gelato that is made fresh daily in small batches.</p>
+            <button>SEE MENU</button>
+        </div>
+    </div>
+    <div class="chocolates">
+        <div class="left">
+            <div class="choc-text">
+                <br>
+                <h2>Chocolates for YOU</h2>
+                <hr id="choc-line">
+                <p>Fresh & delicious chocolates handmade by chocolatier Lal Majid in Karachi. Perfect for sharing,
+                    snacking or for you to enjoy in a moment of pure indulgence.</p>
+                <button>I WANT IT NOW</button>
+            </div>
+            <div class="choc-images">
+                <img id="pic-1" src="chocpic-1.avif">
+                <img id="pic-2" src="chocpic-2.avif">
+            </div>
+
+        </div>
+        <div class="right">
+            <img src="bigchoc.webp">
+        </div>
+
+    </div>
+    <div class="gift-boxes">
+        <img src="gift-pic.webp">
+        <div class="gift-text">
+            <br>
+            <h2>Keepsake Chocolate Boxes</h2>
+            <hr id="gift-line">
+            <p>Chocolate boxes filled with handmade classic chocolates or chocolate bon bons. The perfect gifts for
+                birthdays, anniversaries, holiday celebrations, or even a gift to yourself - these boxes are a delight
+                to gift (& get) and will surely deliver an extraordinary taste experience. Send it with a greeting card
+                along with a personalized greeting card message to make it all the more special. Untie the ribbon, open
+                the box & taste Lals masterpieces.</p>
+            <p id="multiple-texts">GET YOUR FAVORITE DESSERT AT YOUR DOORSTEP</p>
+            <hr id="multiple-lines">
+            <p id="multiple-texts">KDA OUTLET</p>
+            <hr id="multiple-lines">
+            <p id="multiple-texts">SHAHBAZ OUTLET</p>
+            <hr id="multiple-lines">
+            <button>GIFT NOW</button>
+        </div>
+    </div>
+    <div class="reviews">
+        <div class="review-box">
+            <br>
+            <h1>Customer Reviews</h1>
+            <hr id="review-line">
+        </div>
+        <div id="review-slider">
+            <figure>
+                <img src="review 1.png">
+                <img src="review-2.png">
+                <img src="review 1.png">
+                <img src="review-2.png">
+                <img src="review 1.png">
+            </figure>
+        </div>
+
+    </div>
+    <div class="corporate">
+        <br>
+        <br>
+        <h2>Corporate Gifting</h2>
+        <p id="line">CHOCOLATES THAT MEAN BUSINESS.</p>
+        <p>Impress clients and corporate customers with Luxurious Gifts from Lals Chocolates; Be it our premium
+            Chocolate Boxes, Curated Hampers or Gourmet Cakes. We have gifts that will surely be remembered long after
+            the last bite. Customize with a personalized card or a company ribbon to make them even more memorable.</p>
+    </div>
+    <div class="box-corporate">
+        <img src="corporate.webp">
+        <div class="corporate-text">
+            <p>Enter your contact information below and our corporate team will reach out to you</p>
+            <input id="input1" placeholder="Full Name">
+            <input id="input2" placeholder="Your Email">
+            <input id="input3" placeholder="PhoneNumber">
+            <textarea id="input4" placeholder="Message"></textarea>
+            <br>
+            <button>Submit</button>
+        </div>
+    </div>
+    <div class="insta">
+        <p>Follow Us on Instagram</p>
+        <a href="https://www.instagram.com/lalschocolates/">@lalschocolates</a>
+    </div>
+    <div class="insta-body">
+        <div class="insta-slider">
+            <div class="slide-track">
+                <div class="slide">
+                    <img src="insta1.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta2.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta3.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta4.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta5.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta6.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta7.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta8.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta9.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta11.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta12.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta13.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta1.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta2.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta3.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta4.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta5.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta6.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta7.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta8.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta9.jpg">
+                </div>
+                <div class="slide"> 
+                    <img src="insta11.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta12.jpg">
+                </div>
+                <div class="slide">
+                    <img src="insta13.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="lal-footer">
+            <br>
+            <h3>Lals</h3>
+            <hr>
+            <p>Main Line <br>+92304-111LALS</p>
+            <br>
+            <p> Website order queries <br>+92304-111LALS</p>
+            <br>
+            <p>Karachi outlet <br>+92317-111LALS</p>
+            <br>
+            <p>Lahore outlet <br>+9305-111LALS</p>
+            <br>
+            <p>Email<br>customercare@lalschocolates.com</p>
+        </div>
+        <div class="useful-links">
+            <br>
+            <h3>Useful-Links</h3>
+            <hr>
+            <p>> Menu</p>
+            <p>> About Us</p>
+            <p> > Contact</p>
+            <p>> In The News</p>
+            <p>> FAQs</p>
+            <p>> Shipping & Return Policy</p>
+            <p> > Blogs</p>
+            <p>> Lals Corporate Gifting</p>
+        </div>
+        <div class="newsletter">
+            <br>
+            <h3>Newsletter</h3>
+            <hr>
+            <p>Subscribe for Latest Updates and Trends</p>
+            <br>
+            <br>
+            <p>Your Email Address</p>
+            <hr>
+            <button>Subscribe!</button>
+            <div>
+                <i id="facebook" class="fa-brands fa-facebook-f"></i>
+                <i id="instagram" class="fa-brands fa-instagram"></i>
+                <i id="whatsapp" class="fa-brands fa-whatsapp"></i>
+            </div>
+            <img id="cards" src="cards.avif">
+        </div>
+    </footer>
+    <div class="last-footer">
+        <a href="#">Privacy Policy</a>
+        <span>Terms & Conditions</span>
+        <p>© 2024 LALS | Powered by SIAR Digital</p>
+    </div>
+</body>
+
+</html>
