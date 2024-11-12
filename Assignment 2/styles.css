@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    font-family: 'Montserrat-Regular';
+}
+
+header {
+    position: fixed;
+    /* instead of position: sticky; */
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    /* add this to ensure the header is on top of other elements */
+    background-color: #fff;
+    /* add a background color to make it visible */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* add a subtle shadow to separate from the content */
+}
+
+@font-face {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Montserrat Regular'), url('Montserrat-Regular.woff') format('woff');
+}
+
+.ribbon {
+    background-color: #E2F4E8;
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+}
+
+#icon {
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+#phone {
+    font-size: 0.8rem;
+    padding-left: 10px;
+    font-weight: 300;
+    color: black;
+}
+
+.logo {
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delivery {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-left: 50px;
+
+}
+
+#truck {
+    font-size: 15px;
+
+}
+
+.pak p {
+    font-size: 17px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: auto;
+}
+
+.pak {
+    display: flex;
+}
+
+.centre {
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.icons {
+    font-size: 17px;
+    width: 10%;
+    padding-left: 20px;
+    margin-right: 50px;
+}
+
+.line {
+    border-bottom: 0.5px solid #645c5c52;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.option-bar {
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+select {
+    border: none;
+}
+
+.option-bar span,
+.option-bar select {
+    margin: 0 10px;
+    font-size: 15px;
+}
+.carousel-inner img{
+    height: 650px;
+    width: auto;
+}
+.carousel-control-prev{
+    margin-top: 190px;
+}
+.carousel-control-next{
+    margin-top: 190px;
+}
+.quality {
+    border: 2px solid orangered;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 20px;
+    text-align: center;
+    height: 60px;
+    justify-content: center;
+}
+
+.award {
+    display: flex;
+
+}
+
+#awardphoto {
+    width: 630px;
+    height: 520px;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.award-text {
+    height: 460px;
+    width: auto;
+    background-color: #E2F4E8;
+    margin-top: 80px;
+    margin-right: 100px;
+}
+
+.award-text h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+#text-line {
+    border-bottom: 0.09px solid rgb(207, 152, 50);
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+}
+
+.award-text p {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    justify-content: center;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+.menu{
+    margin: 30px 50px;
+    border: none;
+}
+.col{
+    border: none;
+}
+.btn{
+    margin-left: 60px;
+}
+
+
+.chocolates {
+    display: flex;
+}
+
+.choc-text {
+    width: 650px;
+    height: 320px;
+    background-color: #E2F4E8;
+    margin-left: 100px;
+    margin-top: 80px;
+}
+
+.choc-text h2 {
+    font-size: 23px;
+    color: #484848;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 11.5px;
+}
+
+#choc-line {
+    width: 70%;
+    margin-left: 80px;
+    margin-right: 50px;
+    border-bottom: 1px solid rgb(255, 226, 158)
+}
+
+.choc-text p {
+    font-size: 17px;
+    color: #4c4c4c;
+    text-align: center;
+    margin: 20px 95px 11.5px 95px;
+}
+
+.choc-text button {
+    background-color: transparent;
+    margin-left: 230px;
+    width: 180px;
+    height: 24px;
+
+}
+
+.right img {
+    width: 620px;
+    height: 725px;
+    margin-right: 100px;
+    margin-top: 80px;
+}
+.choc-images{
+    margin: 35px 0  0 100px;
+}
+#pic-1{
+    margin-right: 20px ;
+}
+.gift-boxes {
+    display: flex;
+    margin-top: 45px;
+}
+
+.gift-boxes img {
+    width: 640px;
+    height: 620px;
+    margin-left: 100px;
+    margin-right: 15px;
+}
+
+.gift-text {
+    width: 630px;
+    height: 670px;
+    background-color: #E2F4E8;
+}
+
+.gift-text h2 {
+    text-align: center;
+    margin: 50px 60px 20px 60px;
+    font-family: "Montserrat-Regular";
+    font-weight: 500;
+}
+
+#gift-line {
+    border-bottom: 1px solid rgb(255, 226, 158);
+    margin: 0 55px 0 55px;
+}
+
+.gift-text p {
+    text-align: center;
+    margin: 40px 66px 55px 65px;
+    font-size: 17px;
+}
+
+#multiple-texts {
+    text-align: center;
+    color: black;
+    margin: 10px 30px 20px 30px;
+}
+
+#multiple-lines {
+    margin: 0 40px 0 40px;
+    border-bottom: 0.001rem solid black;
+}
+
+.gift-text button {
+    background-color: transparent;
+    margin-left: 220px;
+    width: 180px;
+    height: 24px;
+    margin-top: 50px;
+}
+.review-box {
+    height: auto;
+    width: auto;
+    margin-top: 50px;
+    background-color: #E2F4E8;
+}
+
+.review-box h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 25px;
+}
+
+#review-line {
+    border-bottom: 1px solid rgb(255, 226, 158);
+    margin: 5px 75px 0px 75px;
+}
+
+
+.reviewphoto img{
+    width: auto;
+    height: 300px;
+}
+.insta {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.insta p {
+    margin-top: 50px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.insta a {
+    text-align: center;
+    text-decoration: none;
+    margin-left: 700px;
+    margin-bottom: 0;
+    color: #484848;
+}
+.row img{
+    display: flex;
+    align-items:start;
+    margin-left: 30px;
+    margin-top: 50px;
+    height: 300px;
+    width: 300px;
+}
+#carouselExampleAutoplaying .carousel-control-prev,
+#carouselExampleAutoplaying .carousel-control-next {
+    width: 5%;
+    margin-top: -20px;
+}
+
+#carouselExampleAutoplaying.carousel-control-prev-icon,
+#carouselExampleAutoplaying .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 20px;
+   
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #E2F4E8;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 40px;
+    margin-top: 20px;
+}
+
+.lal-footer {
+    height: 460px;
+    width: 390px;
+}
+
+.useful-links {
+    height: 460px;
+    width: 390px;
+}
+
+.newsletter {
+    height: 460px;
+    width: 390px;
+}
+
+footer h3 {
+    font-size: 19px;
+    font-weight: normal;
+}
+
+footer hr {
+    border-bottom: 1px solid rgb(255, 226, 158);
+    margin: 10px 0px 30px 0px;
+}
+
+.lal-footer p {
+    line-height: 17px;
+}
+
+.useful-links p {
+    font-size: 16px;
+    line-height: 25px;
+}
+
+footer button {
+    width: 180px;
+    height: 30px;
+    background-color: transparent;
+    text-align: center;
+    font-size: 17px;
+}
+
+#facebook {
+    font-size: 20px;
+    margin: 50px 15px 0 0;
+}
+
+#whatsapp {
+    font-size: 20px;
+    margin: 50px 15px 0 0;
+}
+
+#instagram {
+    font-size: 20px;
+    margin: 50px 15px 0 0;
+}
+
+#cards {
+    width: 195px;
+    height: 41px;
+    margin-top: 20px;
+}
+
+.last-footer {
+    height: 50px;
+    width: auto;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.last-footer a {
+    color: black;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+.last-footer p {
+    margin-left: 800px;
+}
+
+.last-footer span {
+    margin-left: 50px;
+}
