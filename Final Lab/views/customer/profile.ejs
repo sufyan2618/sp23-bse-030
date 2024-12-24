@@ -1,0 +1,126 @@
+<!-- views/customer/profile.ejs -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Profile Section -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">My Profile</h3>
+                    <% if (typeof error !== 'undefined' && error) { %>
+                        <div class="alert alert-danger">Error updating profile</div>
+                    <% } %>
+                    <% if (typeof success !== 'undefined' && success) { %>
+                        <div class="alert alert-success">Profile updated successfully</div>
+                    <% } %>
+                    <form action="/customer/profile/update" method="POST">
+                        <div class="form-group mb-3">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" 
+                                   value="<%= customer.name %>" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" 
+                                   value="<%= customer.email %>" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">My Orders</h3>
+                    <% if (orders.length === 0) { %>
+                        <p>No orders found.</p>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% orders.forEach(order => { %>
+                                        <tr>
+                                            <td>#<%= order._id %></td>
+                                            <td><%= new Date(order.createdAt).toLocaleDateString() %></td>
+                                            <td>
+                                                <span class="badge <%= order.status === 'Completed' ? 'bg-success' : 'bg-warning' %>">
+                                                    <%= order.status %>
+                                                </span>
+                                            </td>
+                                            <td>PKR <%= order.totalPrice %></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">My Wishlist</h3>
+                    <div class="row">
+                        <% if (customer.wishlist && customer.wishlist.length > 0) { %>
+                            <% customer.wishlist.forEach(product => { %>
+                                <div class="col-md-3 mb-4">
+                                    <div class="card">
+                                        <img src="/<%= product.picture %>" class="card-img-top" alt="<%= product.title %>">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= product.title %></h5>
+                                            <p class="card-text">PKR <%= product.price %></p>
+                                            <button class="btn btn-danger btn-sm remove-from-wishlist" 
+                                                    data-product-id="<%= product._id %>">
+                                                Remove
+                                            </button>
+                                            <a href="/add-to-cart/<%= product._id %>" class="btn btn-primary btn-sm">
+                                                Add to Cart
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } else { %>
+                            <div class="col-12">
+                                <p>Your wishlist is empty.</p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+    button.addEventListener('click', async function() {
+        const productId = this.dataset.productId;
+        try {
+            const response = await fetch(`/wishlist/remove/${productId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                location.reload();
+            }
+        } catch (error) {
+            console.error('Error removing from wishlist:', error);
+        }
+    });
+});
+</script>

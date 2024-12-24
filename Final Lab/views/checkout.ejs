@@ -1,0 +1,470 @@
+<style>
+    .contact-form {
+        display: flex;
+        align-items: flex-start;
+        /* Align items to the start */
+        justify-content: center;
+        margin-top: 30px;
+        /* Add some margin to the top */
+    }
+
+    #heading {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+        /* Adjust margin for better spacing */
+    }
+
+    .left {
+        margin-right: 50px;
+        margin-left: 30px;
+        flex: 1;
+        /* Allow the left section to take available space */
+    }
+
+    .right {
+        flex: 1;
+        /* Allow the right section to take available space */
+    }
+
+    .modal-footer a {
+        text-decoration: none;
+    }
+
+    table {
+        width: 100%;
+        /* Make the table full width */
+        border-collapse: collapse;
+        /* Collapse borders */
+    }
+
+    th,
+    td {
+        padding: 10px;
+        /* Add padding for table cells */
+        text-align: left;
+        /* Align text to the left */
+        border-bottom: 1px solid #ddd;
+        /* Add a bottom border */
+    }
+
+    tfoot td {
+        font-weight: bold;
+        /* Make total price bold */
+    }
+
+    .payment-section {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-box {
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .payment-box:hover {
+        border-color: #007bff;
+        transform: translateY(-2px);
+    }
+
+    .payment-box.selected {
+        border-color: #007bff;
+        background-color: #f8f9fa;
+    }
+
+    .payment-logo {
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .payment-form {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .payment-form input {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 8px 12px;
+    }
+
+    .payment-form input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    }
+</style>
+
+<h2 id="heading">Checkout Form</h2>
+<div class="contact-form">
+    <div class="left">
+        <div class="container mt-5">
+            <h4 class="mb-3">Contact</h4>
+            <form id="checkoutForm" action="/checkout" method="POST">
+                <input type="hidden" name="totalPrice" value="<%= totalPrice %>"> <!-- Hidden field for total price -->
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            required>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">Delivery</h4>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="country" class="form-label">Country/Region</label>
+                        <select class="form-select" id="country" name="country">
+                            <option selected>Pakistan</option>
+                            <option value="1">USA</option>
+                            <option value="2">UK</option>
+                            <option value="3">Canada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name"
+                            required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name"
+                            required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Your address"
+                            required>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="postalCode" class="form-label">Postal Code (optional)</label>
+                        <input type="text" class="form-control" id="postalCode" name="postalCode"
+                            placeholder="Postal Code">
+                    </div>
+                </div>
+
+                <!-- Add this right before the Pay Now button in your form -->
+                <div class="payment-section mt-4">
+                    <h4 class="mb-3">Payment Method</h4>
+                    <div class="payment-options">
+                        <div class="row g-3">
+                            <!-- JazzCash Option -->
+                            <div class="col-md-6">
+                                <div class="payment-box" onclick="selectPayment('jazzcash')">
+                                    <img src="/images/jazzcash-logo.jpeg" alt="JazzCash" class="payment-logo">
+                                    <span>JazzCash</span>
+                                </div>
+                            </div>
+
+                            <!-- EasyPaisa Option -->
+                            <div class="col-md-6">
+                                <div class="payment-box" onclick="selectPayment('easypaisa')">
+                                    <img src="/images/easypaisa-logo.jpeg" alt="EasyPaisa" class="payment-logo">
+                                    <span>EasyPaisa</span>
+                                </div>
+                            </div>
+
+                            <!-- Debit Card Option -->
+                            <div class="col-md-6">
+                                <div class="payment-box" onclick="selectPayment('debitcard')">
+                                    <img src="/images/card-logo.png" alt="Debit Card" class="payment-logo">
+                                    <span>Debit Card</span>
+                                </div>
+                            </div>
+
+                            <!-- Cash on Delivery Option -->
+                            <div class="col-md-6">
+                                <div class="payment-box" onclick="selectPayment('cod')">
+                                    <img src="/images/cod-logo.png" alt="Cash on Delivery" class="payment-logo">
+                                    <span>Cash on Delivery</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details Forms -->
+                        <div class="payment-details mt-3">
+                            <!-- JazzCash Form -->
+                            <div id="jazzcash-form" class="payment-form" style="display: none;">
+                                <div class="mb-3">
+                                    <label for="jazzcash-number" class="form-label">JazzCash Number</label>
+                                    <input type="text" class="form-control" id="jazzcash-number"
+                                        placeholder="Enter JazzCash number" pattern="03[0-9]{9}" maxlength="11">
+                                </div>
+                            </div>
+
+                            <!-- EasyPaisa Form -->
+                            <div id="easypaisa-form" class="payment-form" style="display: none;">
+                                <div class="mb-3">
+                                    <label for="easypaisa-number" class="form-label">EasyPaisa Number</label>
+                                    <input type="text" class="form-control" id="easypaisa-number"
+                                        placeholder="Enter EasyPaisa number" pattern="03[0-9]{9}" maxlength="11">
+                                </div>
+                            </div>
+
+                            <!-- Debit Card Form -->
+                            <div id="debitcard-form" class="payment-form" style="display: none;">
+                                <div class="mb-3">
+                                    <label for="card-number" class="form-label">Card Number</label>
+                                    <input type="number" class="form-control" id="card-number"
+                                        placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="card-expiry" class="form-label">Expiry Date</label>
+                                        <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY"
+                                            maxlength="7">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="card-cvv" class="form-label">CVV</label>
+                                        <input type="number" class="form-control" id="card-cvv" placeholder="XXX"
+                                            maxlength="3">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COD Form -->
+                            <div id="cod-form" class="payment-form" style="display: none;">
+                                <div class="alert alert-info">
+                                    Cash on delivery is available. You will pay Rs. <%= totalPrice + 250 %> upon
+                                        delivery.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pay Now Button -->
+                <div class="text-end mt-4">
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#orderConfirmedModal">
+                        Pay Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Confirmation -->
+    <div class="modal fade" id="orderConfirmedModal" tabindex="-1" aria-labelledby="orderConfirmedLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderConfirmedLabel">Order Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Your order is confirmed! 🎉</p>
+                    <p>You will soon be contacted</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="generateBillBtn">Generate Bill</button>
+                    <button type="button" class="btn btn-secondary" onclick="goBackHome()">Go Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+        <!-- Order Summary Section -->
+        <div class="checkout-container">
+            <h1>Checkout</h1>
+
+            <h2>Order Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(product=> { %>
+                        <tr>
+                            <td>
+                                <%= product.title %> × <%= product.quantity %>
+                            </td>
+                            <td>
+                                <%= (product.price * product.quantity).toFixed(2) %> Rs
+                            </td>
+                        </tr>
+                        <% }); %>
+                            <tr>
+                                <td> Delivery Charges</td>
+                                <td>250Rs</td>
+                            </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total Price:</strong></td>
+                        <td>
+                            <%= totalPrice + 250 %> Rs
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+
+
+    // Move this function outside, at the top level of your script
+function selectPayment(method) {
+    // Hide all forms
+    document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+    });
+
+    // Remove selected class from all boxes
+    document.querySelectorAll('.payment-box').forEach(box => {
+        box.classList.remove('selected');
+    });
+
+    // Show selected form and highlight box
+    document.getElementById(`${method}-form`).style.display = 'block';
+    // Add selected class to clicked box
+    document.querySelector(`.payment-box[onclick="selectPayment('${method}')"]`).classList.add('selected');
+
+    // Add hidden input for payment method if it doesn't exist
+    let paymentInput = document.querySelector('input[name="paymentMethod"]');
+    if (!paymentInput) {
+        paymentInput = document.createElement('input');
+        paymentInput.type = 'hidden';
+        paymentInput.name = 'paymentMethod';
+        document.getElementById('checkoutForm').appendChild(paymentInput);
+    }
+    paymentInput.value = method;
+}
+
+
+
+    document.getElementById('generateBillBtn').addEventListener('click', function () {
+        const orderDetails = {
+            orderId: Date.now(), // Generate a unique order ID based on timestamp
+            items: [],
+            totalPrice: parseFloat(document.querySelector('input[name="totalPrice"]').value)
+        };
+
+        // Collecting items from the order summary
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const title = row.cells[0].innerText;
+            const price = parseFloat(row.cells[1].innerText.replace('$', ''));
+            orderDetails.items.push({ name: title, price: price, quantity: 1 }); // Assuming quantity is 1 for each item
+        });
+
+        
+
+        generateBill(orderDetails);
+        document.getElementById('checkoutForm').submit(); // Submit the form after generating the bill
+    });
+
+    function goBackHome() {
+        window.location.href = '/'; // Redirect to home page
+    }
+
+    function generateBill(orderDetails) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Fetch customer details from the form
+    const email = document.getElementById('email').value;
+    const country = document.getElementById('country').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+
+    // Set up styles
+    doc.setFontSize(18);
+    doc.text('Lal\'s Chocolate - Order Confirmation', 105, 20, { align: 'center' });
+
+    // Order Information
+    doc.setFontSize(14);
+    doc.text('Order Details', 20, 40);
+    
+    let yPosition = 60;
+    
+    // Table Headers
+    doc.setFontSize(12);
+    doc.text('Product', 20, yPosition);
+    doc.text('Quantity', 100, yPosition);
+    doc.text('Price (Rs)', 150, yPosition);
+    
+    yPosition += 10;
+
+    // Product Details
+    orderDetails.items.forEach(item => {
+        doc.text(item.name, 20, yPosition);
+        doc.text(item.quantity.toString(), 100, yPosition);
+        doc.text(item.price.toString(), 150, yPosition);
+        yPosition += 10;
+    });
+
+    // Delivery Charges
+    yPosition += 10;
+    doc.text('Delivery Charges', 20, yPosition);
+    doc.text('250.00', 150, yPosition);
+
+    // Total
+    yPosition += 10;
+    doc.setFontSize(14);
+    doc.text('Total Amount:', 20, yPosition);
+    doc.text(`${orderDetails.totalPrice + 250} Rs`, 150, yPosition);
+
+    // Customer Details
+    yPosition += 30;
+    doc.setFontSize(14);
+    doc.text('Customer Details', 20, yPosition);
+    
+    yPosition += 10;
+    doc.setFontSize(12);
+    doc.text(`Name: ${firstName} ${lastName}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Email: ${email}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Address: ${address}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`City: ${city}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Country: ${country}`, 20, yPosition);
+
+    // Order ID and Date
+    yPosition += 20;
+    doc.text(`Order ID: ${orderDetails.orderId}`, 20, yPosition);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, yPosition + 10);
+
+    // Save the PDF
+    doc.save(`Lals_Order_${orderDetails.orderId}.pdf`);
+}
+
+</script>

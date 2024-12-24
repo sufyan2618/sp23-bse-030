@@ -1,0 +1,40 @@
+/* public/css/profile.css */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    padding: 8px 20px;
+}
+
+.wishlist-item img {
+    max-height: 150px;
+    object-fit: cover;
+}
