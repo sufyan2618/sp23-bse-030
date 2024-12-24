@@ -1,0 +1,107 @@
+<!-- views/admin/analytics.ejs -->
+<div class="container-fluid mt-4">
+    <!-- Summary Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Orders</h5>
+                    <h2><%= totalOrders %></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <h2>Rs. <%= totalRevenue.toFixed(2) %></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Products</h5>
+                    <h2><%= totalProducts %></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Queries</h5>
+                    <h2><%= totalCustomerQueries %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Monthly Revenue</h5>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Top Selling Products</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Units Sold</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% topProducts.forEach(product => { %>
+                                    <tr>
+                                        <td><%= product.productDetails[0]?.title || 'Unknown' %></td>
+                                        <td><%= product.totalSold %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Monthly Revenue Chart
+    const monthlyRevenueData = <%- JSON.stringify(monthlyRevenue) %>;
+    const labels = monthlyRevenueData.map(data => 
+        new Date(data._id.year, data._id.month - 1).toLocaleString('default', { month: 'short', year: 'numeric' })
+    );
+    const revenues = monthlyRevenueData.map(data => data.revenue);
+
+    new Chart(document.getElementById('revenueChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Monthly Revenue',
+                data: revenues,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
