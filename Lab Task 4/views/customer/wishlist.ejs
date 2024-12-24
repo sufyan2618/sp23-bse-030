@@ -1,0 +1,49 @@
+<!-- views/customer/wishlist.ejs -->
+<div class="container mt-5">
+    <h2>My Wishlist</h2>
+    <div class="row">
+        <% if (wishlist.length === 0) { %>
+            <div class="col-12">
+                <p>Your wishlist is empty.</p>
+            </div>
+        <% } else { %>
+            <% wishlist.forEach(product => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="/<%=product.picture%>" class="card-img-top" alt="<%=product.title%>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=product.title%></h5>
+                            <p class="card-text">$<%=product.price%></p>
+                            <button class="btn btn-danger remove-from-wishlist" 
+                                    data-product-id="<%=product._id%>">
+                                Remove from Wishlist
+                            </button>
+                            <a href="/add-to-cart/<%=product._id%>" class="btn btn-primary">
+                                Add to Cart
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+    button.addEventListener('click', async function() {
+        const productId = this.dataset.productId;
+        try {
+            const response = await fetch(`/wishlist/remove/${productId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                location.reload();
+            }
+        } catch (error) {
+            console.error('Error removing from wishlist:', error);
+        }
+    });
+});
+</script>
